@@ -518,3 +518,66 @@
 .site-footer p a:hover {
   text-decoration: underline;
 }
+
+.callback-form {
+  position: absolute;
+  top: 100%;
+  right: 20%;
+  width: 300px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 10;
+  margin-top: -100px;
+}
+.callback-form .form-container {
+  background-color: #4A585A;
+  padding: 20px;
+  color: #ffffff;
+}
+.callback-form .form-container h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+.callback-form .form-container p {
+  font-size: 0.9rem;
+  color: #d3d3d3;
+  margin-bottom: 20px;
+}
+.callback-form .form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.callback-form .form-container form input, .callback-form .form-container form select {
+  width: 90%;
+  padding: 10px;
+  font-size: 0.9rem;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  outline: none;
+  color: #333;
+}
+.callback-form .form-container form input::placeholder {
+  color: #b2b2b2;
+}
+.callback-form .form-container form select {
+  color: #666;
+}
+.callback-form .form-container form button {
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  background-color: #e1d8be;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.callback-form .form-container form button:hover {
+  background-color: #d4c6a8;
+}

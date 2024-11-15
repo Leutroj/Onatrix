@@ -324,13 +324,13 @@
         font-size: 2.5rem;
         font-weight: bold;
         color: #ffffff;
-        margin-bottom: 40px; // Öka avståndet mellan rubriken och statistiken
+        margin-bottom: 40px; 
     }
 
     .statistics-items {
         display: flex;
         justify-content: center;
-        gap: 80px; // Öka avståndet mellan varje statistik-item
+        gap: 80px; 
         margin-top: 20px;
     }
 
@@ -349,7 +349,7 @@
             font-size: 1rem;
             color: #ffffff;
             margin-top: 10px;
-            line-height: 1.5; // För bättre läsbarhet på flera rader
+            line-height: 1.5; 
         }
     }
     .statistics-image {
@@ -374,7 +374,7 @@
     h5 {
         font-size: 0.9rem;
         text-transform: uppercase;
-        color: #d4a373; // Accentfärg för underrubriken
+        color: #d4a373; 
         margin-bottom: 5px;
     }
 
@@ -387,10 +387,10 @@
 
     .project-slides {
         display: flex;
-        justify-content: center; // Centrera slides horisontellt
+        justify-content: center; 
         gap: 20px;
         margin-bottom: 40px;
-        flex-wrap: wrap; // Gör att slides går till nästa rad om de inte får plats
+        flex-wrap: wrap; 
 
         .project-slide {
             position: relative;
@@ -475,9 +475,9 @@
     font-family: 'Poppins', sans-serif;
 
     .container {
-        max-width: 1200px; // Sätter en maxbredd för att hålla allt centrerat
-        margin: 0 auto; // Centrerar containern
-        padding: 0 20px; // Ger lite padding på sidorna för att undvika att innehållet ligger mot kanterna
+        max-width: 1200px; 
+        margin: 0 auto; 
+        padding: 0 20px; 
     }
 
     .top-bar {
@@ -575,8 +575,8 @@
 }
 
 .site-footer {
-    background-color: #222; // Mörk bakgrund för footern
-    color: #cccccc; // Ljusare textfärg
+    background-color: #222; 
+    color: #cccccc; 
     padding: 20px 0;
     text-align: center;
     font-size: 0.9rem;
@@ -591,11 +591,82 @@
         margin: 0;
 
         a {
-            color: #d4a373; // Accentfärg för länken
+            color: #d4a373; 
             text-decoration: none;
 
             &:hover {
-                text-decoration: underline; // Understrykning vid hover
+                text-decoration: underline; 
+            }
+        }
+    }
+}
+
+.callback-form {
+    position: absolute;
+    top: 100%; 
+    right: 20%;
+    width: 300px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 10;
+    margin-top: -100px; 
+    .form-container {
+        background-color: #4A585A;
+        padding: 20px;
+        color: #ffffff;
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: #d3d3d3;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            input, select {
+                width: 90%;
+                padding: 10px;
+                font-size: 0.9rem;
+                border: 1px solid #cccccc;
+                border-radius: 5px;
+                outline: none;
+                color: #333;
+            }
+
+            input::placeholder {
+                color: #b2b2b2;
+            }
+
+            select {
+                color: #666;
+            }
+
+            button {
+                padding: 10px;
+                font-size: 1rem;
+                font-weight: bold;
+                color: #333;
+                background-color: #e1d8be;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+
+                &:hover {
+                    background-color: #d4c6a8;
+                }
             }
         }
     }

@@ -1,22 +1,28 @@
-﻿<header class="site-header">
-    <!-- Toppsektion med adress och sociala ikoner -->
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models.Blocks
+
+@{
+    var logo = Model?.Value<IPublishedContent>("logotype")?.Url() ?? "";
+}
+
+<header class="site-header">
     <div class="top-bar">
         <div class="container">
             <div class="address">Klarabergsviadukten 90, 111 64 Stockholm</div>
             <div class="social-icons">
-                <a href="https://facebook.com" target="_blank" class="social-icon">F</a>
-                <a href="https://twitter.com" target="_blank" class="social-icon">T</a>
-                <a href="https://linkedin.com" target="_blank" class="social-icon">L</a>
+                <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
     </div>
 
-    <!-- Huvudsektion med logotyp och navigation -->
     <div class="main-header">
         <div class="container">
             <div class="logo">
                 <a href="/">
-                    <img src="/path/to/logo.png" alt="Logo" />
+                    <img src="@logo" alt="Logo" />
                     <span>Onatrix</span>
                 </a>
             </div>
@@ -31,7 +37,7 @@
             </nav>
 
             <div class="search-icon">
-                <a href="/search">Q</a>
+                <a href="/search"><i class="fa-solid fa-magnifying-glass"></i></a>
             </div>
         </div>
     </div>
