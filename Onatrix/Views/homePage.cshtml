@@ -1,0 +1,210 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models.Blocks
+
+
+@{
+    Layout = "mainLayout.cshtml";
+    ViewBag.Title = Model?.Value("pageTitle") ?? null;
+
+    var backgroundImage = Model?.Value<IPublishedContent>("heroBackgroundImage")?.Url() ?? "";
+    var signatureImage = Model?.Value<IPublishedContent>("aboutSignatureImage")?.Url() ?? "";
+    var serviceItemImage = Model?.Value<IPublishedContent>("serviceItemImage")?.Url() ?? "";
+    var trustedImage = Model?.Value<IPublishedContent>("trustedBackgroundImage")?.Url() ?? "";
+    var successBackgroundImage = Model?.Value<IPublishedContent>("successBackgroundImage")?.Url() ?? "";
+    var successImage = Model?.Value<IPublishedContent>("successImage")?.Url() ?? "";
+    var projectImage = Model?.Value<IPublishedContent>("projectImage")?.Url() ?? "";
+    var brandsImage = Model?.Value<IPublishedContent>("brandImages")?.Url() ?? "";
+}
+
+<section id="hero-slider" class="hero">
+    <div class="background" style="background-image:url(@backgroundImage); background-size: cover; background-position: 60%">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="headline">@Model?.Value("heroHeadline")</h1>
+                <p class="ingress">@Model?.Value("heroText")</p>
+            </div>
+            <a href="@Model?.Value("heroButtonUrl")" class="btn-primary">@Model?.Value("heroButtonText")</a>
+        </div>
+    </div>
+</section>
+
+<section id="about-us" class="about-us">
+    <div class="container">
+        <div class="content">
+            <div class="headline">
+                <h5>@Model?.Value("aboutSectionTitle")</h5>
+                <h2>@Model?.Value("aboutHeadline")</h2>
+            </div>
+            <blockquote class="quote">@Model?.Value("aboutQoute")</blockquote>
+            <p>@Model?.Value("aboutText")</p>
+            <div class="signature-container">
+                <div class="signature">
+                    <img class="signature-image" src="@signatureImage" alt="@Model?.Value("aboutSignature")" />
+                    <div class="clarification">
+                        <p class="name">@Model?.Value("aboutSignature")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="form-container">
+</div>
+
+<section id="our-services" class="our-services">
+    <div class="container">
+        <div class="headline">
+            <h5>@Model?.Value("sectionTitle")</h5>
+            <h2>@Model?.Value("servicesHeadline")</h2>
+        </div>
+
+       <div class="service-boxes">
+    @{
+        var services = Model?.Value<BlockListModel>("servicesBox");
+        if (services == null || !services.Any())
+        {
+            <p>servicesBox är tom eller null.</p>
+        }
+        else
+        {
+            foreach (var service in services)
+            {
+                var content = service.Content;
+                var title = content.Value<string>("serviceItemTitle") ?? "Default Title";
+                var description = content.Value<string>("serviceItemDescription") ?? "Default Description";
+                var image = content.Value<IPublishedContent>("serviceItemImage")?.Url() ?? "";
+
+                <div class="service-box">
+                    <img src="@image" alt="@title" class="service-icon" />
+                    <h3>@title</h3>
+                    <p>@description</p>
+                </div>
+            }
+        }
+    }
+    </div>
+ </div>
+</section>
+
+<section id="trusted-clients" class="trusted-clients">
+    <div class="container">
+        <div class="content">
+            <h2 class="headline">@Model?.Value("trustedHeadline")</h2>
+            <h3 class="subheadline">@Model?.Value("trustedHeadlineLight")</h3>
+            <p class="description">@Model?.Value("trustedText")</p>
+            <a href="@Model?.Value("trustedButtonUrl")" class="btn btn-primary">@Model?.Value("trustedButtonText")</a>
+             <img class="trusted-image" src="@trustedImage" alt="@Model?.Value("trustedBackgroundImage")" />
+        </div>
+    </div>
+</section>
+
+<section class="statistics-section">
+
+    <div class="success-background">
+        <div class="statistics-content">
+
+                <h5 class="section-subtitle">@Model?.Value("successSectionTitle")</h5>
+  
+                <h2 class="section-title">@Model?.Value("successHeadline")</h2>
+
+@{
+    var successBoxItems = Model?.Value<BlockListModel>("successBox");
+}
+
+<div class="statistics-items">
+    @{
+        var successes = Model?.Value<BlockListModel>("successBox");
+        if (successes == null || !successes.Any())
+        {
+            <p>successBox är tom eller null.</p>
+        }
+        else
+        {
+            foreach (var success in successes)
+            {
+                var content = success.Content;
+                var numbers = content.Value<string>("successNumbers") ?? "Default Number";
+                var text = content.Value<string>("successNumberText") ?? "Default Text";
+
+                <div class="statistics-item">
+                    <h3>@numbers</h3>
+                    <p>@text</p>
+                </div>
+            }
+        }
+    }
+    </div>
+
+</div>
+
+
+    </div>
+    @if (!string.IsNullOrEmpty(successImage))
+    {
+        <div class="statistics-image">
+            <img class="success-image" src="@successImage" alt="Success image" />
+        </div>
+    }
+</section>
+
+<section class="recent-projects">
+    <div class="container">
+        <h5>@Model?.Value("projectSectionTitle")</h5>
+        <h2>@Model?.Value("projectHeadline")</h2>
+
+        <div class="project-slides">
+            @{
+                var slides = Model?.Value<BlockListModel>("projectSlide");
+                if (slides == null || !slides.Any())
+                {
+                    <p>Inga projekt att visa.</p>
+                }
+                else
+                {
+                    foreach (var slide in slides)
+                    {
+                        var content = slide.Content;
+                        var image = content.Value<IPublishedContent>("projectImage");
+                        var title = content.Value<string>("projectTitle") ?? "Default Title";
+                        var category = content.Value<string>("projectCatagory") ?? "Default Category";
+                        var url = content.Value<string>("projectUrl");
+
+                        <div class="project-slide" style="background-image: url('@image?.Url()');">
+                            <div class="overlay">
+                                <h3>@title</h3>
+                                <p>@category</p>
+                                @if (!string.IsNullOrEmpty(url))
+                                {
+                                    <a href="@url" class="project-link">></a>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+
+        <div class="brands">
+            @{
+                var brands = Model?.Value<IEnumerable<IPublishedContent>>("brandImages");
+                if (brands == null || !brands.Any())
+                {
+                    <p>Inga varumärken att visa.</p>
+                }
+                else
+                {
+                    foreach (var brandImage in brands)
+                    {
+                        <div class="brand-item">
+                            <img src="@brandImage?.Url()" alt="Brand Image" />
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+</section>
+
+
